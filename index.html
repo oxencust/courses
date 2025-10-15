@@ -1125,7 +1125,16 @@
 
         async function initializeLiff() {
             try {
-                await liff.init({ liffId: '2008291855-pKme6OdV' });
+                // 從 window.liffId 讀取 LIFF ID，由外部設置
+                const liffId = window.liffId;
+                
+                if (!liffId) {
+                    console.warn('LIFF ID not found. Please set window.liffId before loading this page.');
+                    updateButtons();
+                    return;
+                }
+
+                await liff.init({ liffId: liffId });
                 
                 if (liff.isLoggedIn()) {
                     const profile = await liff.getProfile();
