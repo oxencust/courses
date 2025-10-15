@@ -1125,22 +1125,46 @@
 
         // 初始化 LIFF 並獲取用戶 ID
         async function initializeLiff() {
+            console.log('🔍 開始初始化 LIFF...');
+            
             try {
-                // LIFF 會自動從當前 LIFF URL 中讀取 LIFF ID
-                await liff.init({ liffId: liff.id || '2008291855-pKme6OdV' });
+                // 檢查是否在 LIFF 環境中
+                if (!liff) {
+                    console.error('❌ LIFF SDK 未載入');
+                    updateButtons();
+                    return;
+                }
+
+                // 使用當前頁面的 LIFF ID 初始化
+                await liff.init({ liffId: '2008291855-pKme6OdV' });
+                console.log('✅ LIFF 初始化成功');
                 
+                // 檢查登入狀態
                 if (liff.isLoggedIn()) {
+                    console.log('✅ 用戶已登入');
+                    
+                    // 取得用戶資料
                     const profile = await liff.getProfile();
                     lineUserId = profile.userId;
-                    console.log('LINE User ID:', lineUserId);
+                    
+                    console.log('✅ 成功取得 LINE User ID:', lineUserId);
+                    console.log('📋 用戶資料:', {
+                        userId: profile.userId,
+                        displayName: profile.displayName,
+                        pictureUrl: profile.pictureUrl
+                    });
                 } else {
-                    console.log('User not logged in');
+                    console.warn('⚠️ 用戶未登入 LIFF');
+                    // 嘗試登入
+                    liff.login();
+                    return;
                 }
             } catch (error) {
-                console.error('LIFF initialization failed:', error);
+                console.error('❌ LIFF 初始化失敗:', error);
+                console.error('錯誤詳情:', error.message);
             }
             
-            // 無論是否成功取得 User ID，都更新按鈕
+            // 更新按鈕連結
             updateButtons();
         }
 
@@ -1149,15 +1173,35 @@
             const chatbotButton = document.getElementById('chatbotButton');
             
             if (lineUserId) {
-                ctaButton.href = baseFormUrl + '?LINEID=' + lineUserId;
-                chatbotButton.href = aiChatUrl + '?LINEID=' + lineUserId;
-                console.log('Buttons updated with User ID');
+                const formUrlWithId = baseFormUrl + '?LINEID=' + lineUserId;
+                const chatUrlWithId = aiChatUrl + '?LINEID=' + lineUserId;
+                
+                ctaButton.href = formUrlWithId;
+                chatbotButton.href = chatUrlWithId;
+                
+                console.log('✅ 按鈕已更新');
+                console.log('📋 諮詢單連結:', formUrlWithId);
+                console.log('🤖 客服連結:', chatUrlWithId);
             } else {
                 ctaButton.href = baseFormUrl;
                 chatbotButton.href = aiChatUrl;
-                console.log('Buttons updated without User ID');
+                console.warn('⚠️ 未取得 User ID，使用基本連結');
             }
         }
+
+        // 測試：點擊按鈕前顯示即將前往的連結
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaButton = document.getElementById('ctaButton');
+            const chatbotButton = document.getElementById('chatbotButton');
+            
+            ctaButton.addEventListener('click', function(e) {
+                console.log('🔗 準備前往諮詢單:', this.href);
+            });
+            
+            chatbotButton.addEventListener('click', function(e) {
+                console.log('🔗 準備前往客服:', this.href);
+            });
+        });
 
         function openImageModal(element) {
             const img = element.querySelector('img');
