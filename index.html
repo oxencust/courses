@@ -1,101 +1,1395 @@
-
 <!DOCTYPE html>
-<html dir="ltr" lang="zh_TW">
+<html lang="zh-TW">
 <head>
-      <script type="module" crossorigin src="https://static.line-scdn.net/line_web_login/edge/dist/assets/polyfills-BqS47Bdy.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>衡點健康事業 - 課程介紹</title>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0d1410;
+            color: #58595b;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>LINE Login</title>
+        /* Forest light beams */
+        .forest-light-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-  <link rel="shortcut icon" type="image/x-icon" href="https://vos.line-scdn.net/login-web/img/favicon.ico">
-  <link rel="icon" type="image/x-icon" sizes="32x32" href="https://vos.line-scdn.net/login-web/img/favicon-32x32.png">
-  <link rel="icon" type="image/x-icon" sizes="16x16" href="https://vos.line-scdn.net/login-web/img/favicon-16x16.png">
+        .light-beam {
+            position: absolute;
+            width: 180px;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                rgba(147, 198, 197, 0.12) 0%,
+                rgba(122, 193, 154, 0.06) 40%,
+                transparent 80%);
+            animation: lightMove 30s infinite ease-in-out;
+            opacity: 0.3;
+            filter: blur(40px);
+        }
 
-  <link rel="apple-touch-icon-precomposed" href="https://vos.line-scdn.net/login-web/img/apple-touch-icon-precomposed.png">
+        .light-beam:nth-child(1) { left: 8%; animation-delay: 0s; }
+        .light-beam:nth-child(2) { left: 28%; animation-delay: 6s; width: 220px; }
+        .light-beam:nth-child(3) { left: 52%; animation-delay: 12s; width: 160px; }
+        .light-beam:nth-child(4) { left: 72%; animation-delay: 18s; width: 200px; }
+        .light-beam:nth-child(5) { left: 88%; animation-delay: 24s; }
 
-<script>/* analytics */
-(function(g,d){
-  var v='release/stable';
-  g._trmq=[];g._trm=function(){g._trmq.push(arguments)};
-  g.onerror=function(m,f,l,c){g._trm('send','exception',m,f,l,c)};
-  var h=location.protocol==='https:'?'https://d.line-scdn.net':'http://d.line-cdn.net';
-  var s=d.createElement('script');s.async=1;
-  s.src=h+'/n/_4/torimochi.js/public/v1/'+v+'/min/torimochi.js';
-  var t=d.getElementsByTagName('script')[0];t.parentNode.insertBefore(s,t);
-})(window, document);
+        @keyframes lightMove {
+            0%, 100% { transform: translateX(0) scaleY(1); opacity: 0.25; }
+            50% { transform: translateX(15px) scaleY(1.05); opacity: 0.35; }
+        }
 
-_trm('performance', { rate: 0.05 });
-_trm('enable', { productKey: "line-web-login-real" });
-/* /analytics */</script>
+        /* Tech circuit grid */
+        .circuit-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.08;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(147, 198, 197, 0.3) 25%, rgba(147, 198, 197, 0.3) 26%, transparent 27%, transparent 74%, rgba(147, 198, 197, 0.3) 75%, rgba(147, 198, 197, 0.3) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(147, 198, 197, 0.3) 25%, rgba(147, 198, 197, 0.3) 26%, transparent 27%, transparent 74%, rgba(147, 198, 197, 0.3) 75%, rgba(147, 198, 197, 0.3) 76%, transparent 77%, transparent);
+            background-size: 100px 100px;
+            animation: gridPulse 8s ease-in-out infinite;
+        }
 
-<script type="text/javascript" charset="UTF-8" src="https://access.line.me/oauth2/v2.1/messages"></script>
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.06; }
+            50% { opacity: 0.1; }
+        }
 
-      <script type="module" crossorigin src="https://static.line-scdn.net/line_web_login/edge/dist/assets/loginUserConfirm-D7imjqHE.js"></script>
-    <link rel="modulepreload" crossorigin href="https://static.line-scdn.net/line_web_login/edge/dist/assets/modulepreload-polyfill-Dqv5PPZA.js">
-    <link rel="modulepreload" crossorigin href="https://static.line-scdn.net/line_web_login/edge/dist/assets/common-B9ajZUzQ.js">
-    <link rel="modulepreload" crossorigin href="https://static.line-scdn.net/line_web_login/edge/dist/assets/cLogo01-Cc8Xmh9g.js">
-    <link rel="modulepreload" crossorigin href="https://static.line-scdn.net/line_web_login/edge/dist/assets/Constant-DvWA3Li3.js">
-    <link rel="modulepreload" crossorigin href="https://static.line-scdn.net/line_web_login/edge/dist/assets/lFooter01-Dq1s9shE.js">
-    <link rel="modulepreload" crossorigin href="https://static.line-scdn.net/line_web_login/edge/dist/assets/lContents01-D9G1wQWM.js">
-    <link rel="modulepreload" crossorigin href="https://static.line-scdn.net/line_web_login/edge/dist/assets/cButton01-DdyqtPkt.js">
-    <link rel="modulepreload" crossorigin href="https://static.line-scdn.net/line_web_login/edge/dist/assets/uLayoutMixin-CjWU8e-C.js">
-    <link rel="modulepreload" crossorigin href="https://static.line-scdn.net/line_web_login/edge/dist/assets/createLayoutWrapper-BtBiQdSc.js">
-    <link rel="modulepreload" crossorigin href="https://static.line-scdn.net/line_web_login/edge/dist/assets/_commonjsHelpers-MdiGH4nz.js">
-    <link rel="modulepreload" crossorigin href="https://static.line-scdn.net/line_web_login/edge/dist/assets/uaPlugin-B5rBq2VH.js">
-    <link rel="modulepreload" crossorigin href="https://static.line-scdn.net/line_web_login/edge/dist/assets/eventHubClickPlugin-DaV8IiU-.js">
-    <link rel="modulepreload" crossorigin href="https://static.line-scdn.net/line_web_login/edge/dist/assets/darkModePlugin-CqX_fx-i.js">
-    <link rel="stylesheet" href="https://static.line-scdn.net/line_web_login/edge/dist/assets/common-Bhu3aKU0.css">
-    <link rel="stylesheet" href="https://static.line-scdn.net/line_web_login/edge/dist/assets/lContents01-BjlPdee4.css">
-    <link rel="stylesheet" href="https://static.line-scdn.net/line_web_login/edge/dist/assets/lFooter01-CewfWLDy.css">
-    <link rel="stylesheet" href="https://static.line-scdn.net/line_web_login/edge/dist/assets/cButton01-ChNamPEZ.css">
-    <link rel="stylesheet" href="https://static.line-scdn.net/line_web_login/edge/dist/assets/loginUserConfirm-DvwtClZP.css">
-    <link rel="stylesheet" href="https://static.line-scdn.net/line_web_login/edge/dist/assets/main-iNVhYMwh.css">
-    <link rel="stylesheet" href="https://static.line-scdn.net/line_web_login/edge/dist/assets/ldsm-semantic-dark-mode-DyhY1IDA.css">
+        .scan-line {
+            position: fixed;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #93c6c5, transparent);
+            opacity: 0.15;
+            animation: scanMove 6s linear infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
 
+        @keyframes scanMove {
+            0% { top: 0%; opacity: 0; }
+            50% { opacity: 0.15; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .particle-system {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glow-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #93c6c5;
+            box-shadow: 0 0 8px #93c6c5;
+            animation: particleFloat 20s infinite ease-in-out;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% { transform: translate(0, 0); opacity: 0.2; }
+            50% { transform: translate(40px, -60px); opacity: 0.5; }
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            z-index: 10;
+            padding: 3rem 5%;
+            text-align: center;
+            background: linear-gradient(180deg, 
+                rgba(18, 40, 28, 0.95) 0%,
+                rgba(13, 20, 16, 0.8) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(147, 198, 197, 0.15);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-container img {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 25px rgba(147, 198, 197, 0.4));
+        }
+
+        /* Floating CTA - Right (Form) */
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, 
+                rgba(242, 172, 152, 0.9) 0%, 
+                rgba(198, 117, 102, 0.9) 100%);
+            color: #ffffff;
+            padding: 1.2rem 2rem;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(242, 172, 152, 0.6);
+            box-shadow: 0 0 25px rgba(242, 172, 152, 0.5),
+                        0 6px 25px rgba(0, 0, 0, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px);
+            clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+            white-space: nowrap;
+            animation: buttonPulse 2s ease-in-out infinite;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, 
+                rgba(242, 172, 152, 1) 0%, 
+                rgba(198, 117, 102, 1) 100%);
+            box-shadow: 0 0 35px rgba(242, 172, 152, 0.7),
+                        0 8px 30px rgba(0, 0, 0, 0.6);
+            transform: translateY(-3px) scale(1.05);
+            animation: none;
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 25px rgba(242, 172, 152, 0.5),
+                            0 6px 25px rgba(0, 0, 0, 0.5);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 0 0 35px rgba(242, 172, 152, 0.7),
+                            0 8px 30px rgba(0, 0, 0, 0.6);
+            }
+        }
+
+        /* AI Chat Bot - Left (Draggable) */
+        .ai-chatbot {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            cursor: move;
+            user-select: none;
+            touch-action: none;
+        }
+
+        .chatbot-button {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, 
+                rgba(159, 204, 204, 0.95) 0%, 
+                rgba(102, 136, 142, 0.95) 100%);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            text-decoration: none;
+            border: 2px solid rgba(159, 204, 204, 0.6);
+            box-shadow: 0 0 30px rgba(159, 204, 204, 0.6),
+                        0 8px 30px rgba(0, 0, 0, 0.5),
+                        inset 0 2px 5px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+            animation: botFloat 3s ease-in-out infinite;
+        }
+
+        .chatbot-button:hover {
+            background: linear-gradient(135deg, 
+                rgba(159, 204, 204, 1) 0%, 
+                rgba(102, 136, 142, 1) 100%);
+            box-shadow: 0 0 40px rgba(159, 204, 204, 0.8),
+                        0 12px 40px rgba(0, 0, 0, 0.6);
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        .ai-chatbot.dragging .chatbot-button {
+            cursor: grabbing;
+            animation: none;
+        }
+
+        @keyframes botFloat {
+            0%, 100% { 
+                transform: translateY(0px);
+            }
+            50% { 
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 5;
+            max-width: 1400px;
+            margin: 3.5rem auto 5rem auto;
+            padding: 0 5%;
+        }
+
+        /* Main tabs */
+        .main-tabs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg,
+                rgba(18, 40, 28, 0.6) 0%,
+                rgba(13, 20, 16, 0.5) 100%);
+            border: 1px solid rgba(147, 198, 197, 0.2);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+        }
+
+        .main-tab-button {
+            padding: 1.5rem 2rem;
+            background: transparent;
+            border: none;
+            border-right: 1px solid rgba(147, 198, 197, 0.15);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        .main-tab-button:last-child {
+            border-right: none;
+        }
+
+        .main-tab-button::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #93c6c5, #7ac19a);
+            transition: width 0.4s ease;
+            box-shadow: 0 0 15px rgba(147, 198, 197, 0.8);
+        }
+
+        .main-tab-button:hover {
+            background: rgba(147, 198, 197, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .main-tab-button.active {
+            background: linear-gradient(135deg,
+                rgba(147, 198, 197, 0.25) 0%,
+                rgba(122, 193, 154, 0.2) 100%);
+            color: #93c6c5;
+            text-shadow: 0 0 10px rgba(147, 198, 197, 0.5);
+        }
+
+        .main-tab-button.active::before {
+            width: 100%;
+        }
+
+        .main-tab-content {
+            display: none;
+            animation: fadeInContent 0.6s ease;
+        }
+
+        .main-tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInContent {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Course section */
+        .course-section {
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.98) 0%,
+                rgba(240, 245, 242, 0.96) 100%);
+            padding: 3.5rem;
+            border: 1px solid rgba(147, 198, 197, 0.25);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4),
+                        0 0 50px rgba(147, 198, 197, 0.08);
+            position: relative;
+            clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+        }
+
+        .course-section::-webkit-scrollbar {
+            display: none;
+        }
+
+        .course-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                #93c6c5 0%, 
+                #7ac19a 50%,
+                #93c6c5 100%);
+            background-size: 200% 100%;
+            animation: gradientShift 8s linear infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+
+        .course-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            border-bottom: 3px solid rgba(147, 198, 197, 0.3);
+            border-right: 3px solid rgba(147, 198, 197, 0.3);
+        }
+
+        .section-title {
+            font-size: 2.3rem;
+            color: #b16056;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 2px solid rgba(147, 198, 197, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            text-shadow: 0 2px 10px rgba(177, 96, 86, 0.15);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 5px;
+            height: 55px;
+            background: linear-gradient(180deg, #93c6c5, #7ac19a);
+            box-shadow: 0 0 15px rgba(147, 198, 197, 0.5);
+        }
+
+        .section-intro {
+            font-size: 1.15rem;
+            color: #58595b;
+            margin-bottom: 3rem;
+            line-height: 1.9;
+            padding: 2rem 2rem 2rem 2.5rem;
+            background: linear-gradient(135deg,
+                rgba(218, 237, 236, 0.4) 0%,
+                rgba(226, 237, 230, 0.4) 100%);
+            border-left: 4px solid #93c6c5;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+        }
+
+        /* Course item */
+        .course-item {
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.98) 0%,
+                rgba(252, 252, 252, 0.96) 100%);
+            border: 1px solid rgba(179, 179, 179, 0.25);
+            padding: 2.8rem;
+            margin-bottom: 3rem;
+            transition: all 0.4s ease;
+            position: relative;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+            clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+        }
+
+        .course-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0%;
+            background: linear-gradient(180deg, #93c6c5, #7ac19a);
+            transition: height 0.4s ease;
+            box-shadow: 0 0 12px rgba(147, 198, 197, 0.6);
+        }
+
+        .course-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 18px 50px rgba(147, 198, 197, 0.2),
+                        0 8px 20px rgba(0, 0, 0, 0.15);
+            border-color: rgba(147, 198, 197, 0.4);
+        }
+
+        .course-item:hover::before {
+            height: 100%;
+        }
+
+        /* Carousel - mobile optimized, full screen */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            margin: 2rem 0;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(147, 198, 197, 0.2);
+            background: #000;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 90vw;
+            max-height: 700px;
+            min-height: 400px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(147, 198, 197, 0.85);
+            border: 1px solid rgba(147, 198, 197, 0.5);
+            color: white;
+            font-size: 1.8rem;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+        }
+
+        .carousel-nav:hover {
+            background: rgba(147, 198, 197, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav.prev { left: 10px; }
+        .carousel-nav.next { right: 10px; }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(147, 198, 197, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            clip-path: polygon(2px 0, 100% 0, 100% calc(100% - 2px), calc(100% - 2px) 100%, 0 100%, 0 2px);
+        }
+
+        .carousel-dot.active {
+            background: #93c6c5;
+            box-shadow: 0 0 12px rgba(147, 198, 197, 0.9);
+            transform: scale(1.3);
+        }
+
+        /* Image Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 95%;
+            max-height: 95%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            box-shadow: 0 0 50px rgba(147, 198, 197, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(147, 198, 197, 0.9);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+            z-index: 10001;
+        }
+
+        .modal-close:hover {
+            background: rgba(147, 198, 197, 1);
+            transform: scale(1.1);
+        }
+
+        .course-header {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .course-number {
+            background: linear-gradient(135deg, #93c6c5, #7ac19a);
+            color: #ffffff;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.35rem;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(147, 198, 197, 0.4);
+            clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+        }
+
+        .course-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #b16056;
+            letter-spacing: 0.5px;
+        }
+
+        .course-subtitle {
+            font-size: 1.05rem;
+            color: #808080;
+            margin-bottom: 1.8rem;
+            padding-left: 1.2rem;
+            border-left: 3px solid #93c6c5;
+        }
+
+        .course-description {
+            color: #58595b;
+            line-height: 1.9;
+            margin-bottom: 1.8rem;
+            font-size: 1.05rem;
+        }
+
+        .course-audience {
+            background: linear-gradient(135deg,
+                rgba(250, 236, 232, 0.7) 0%,
+                rgba(250, 236, 232, 0.5) 100%);
+            padding: 1.8rem;
+            border-left: 4px solid #b16056;
+            box-shadow: 0 4px 15px rgba(177, 96, 86, 0.1);
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+        }
+
+        .course-audience-title {
+            color: #b16056;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .course-audience-text {
+            color: #58595b;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-tabs {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .main-tab-button:nth-child(2) {
+                border-right: none;
+            }
+
+            .main-tab-button:nth-child(3) {
+                border-right: 1px solid rgba(147, 198, 197, 0.15);
+            }
+
+            .carousel-wrapper {
+                height: 85vw;
+                max-height: 600px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 3%;
+                margin: 2rem auto;
+            }
+
+            .course-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .carousel-wrapper {
+                height: 95vw;
+                min-height: 350px;
+            }
+
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+
+            .floating-cta {
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .cta-button {
+                padding: 1rem 1.8rem;
+                font-size: 0.95rem;
+            }
+
+            .ai-chatbot {
+                bottom: 15px;
+                left: 15px;
+            }
+
+            .chatbot-button {
+                width: 65px;
+                height: 65px;
+                font-size: 1.8rem;
+            }
+
+            .main-tabs {
+                grid-template-columns: 1fr;
+                margin-bottom: 2rem;
+            }
+
+            .main-tab-button {
+                border-right: none;
+                border-bottom: 1px solid rgba(147, 198, 197, 0.15);
+                padding: 1.2rem 1.5rem;
+                font-size: 1.1rem;
+            }
+
+            .main-tab-button:last-child {
+                border-bottom: none;
+            }
+
+            .course-item {
+                padding: 2rem 1.5rem;
+            }
+
+            .course-number {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+
+            .course-name {
+                font-size: 1.3rem;
+            }
+
+            .modal-close {
+                top: 10px;
+                right: 10px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-section {
+                padding: 1.5rem 1rem;
+                clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            }
+
+            .carousel-wrapper {
+                height: 100vw;
+                min-height: 320px;
+            }
+
+            .carousel-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 1.3rem;
+            }
+
+            .carousel-nav.prev { left: 5px; }
+            .carousel-nav.next { right: 5px; }
+
+            .floating-cta {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .cta-button {
+                padding: 0.9rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .ai-chatbot {
+                bottom: 10px;
+                left: 10px;
+            }
+
+            .chatbot-button {
+                width: 60px;
+                height: 60px;
+                font-size: 1.6rem;
+            }
+
+            .main-tab-button {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .course-name {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
-
-<body ontouchstart="">
-
-<noscript>
-  <div class="LyWrap">
-    <!--CONTENTS-AREA-->
-    <div class="LyContents" role="main">
-      <div class="lyContentsInner">
-        <div class="MdBox01">
-          <section class="mdBox01Inner MdLYR03Error">
-            <div class="MdLogo01 mdLogo01P01">
-              <h1 class="mdLogo01Img">LINE</h1>
-            </div>
-            <h2 class="mdLYR03Title mdMN10Title">
-              <span class="mdLYR03Icon MdIco01Alert">alert</span>
-              <span>JavaScript錯誤</span>
-            </h2>
-            <p class="mdLYR03Desc mdMN10Desc">
-              您尚未在瀏覽器中啟用JavaScript。<br />
-請先啟用JavaScript，才可使用本網站提供的功能。            </p>
-          </section>
-        </div>
-      </div>
+<body>
+    <div class="forest-light-layer">
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
     </div>
-  </div>
-</noscript>
 
-<div id="__layout">
-  <div class="LyBody" id="app">
-    <app app-data="{&quot;props&quot;:{&quot;assets-origin-url&quot;:&quot;https://static.line-scdn.net/line_web_login/199e59dd0d9/dist&quot;,&quot;username&quot;:&quot;Z1&quot;,&quot;avatar-url&quot;:&quot;https://profile.line-scdn.net/0hlCvqRVB8M2xbCCLZLCtNUitYMAZ4eWp-dm8uDzwLblkyMXZtc299CT1cOFkzOHxpf2p-A2sNPgt5UxJ-EBAccwBUMygtZ3JdazsFSxx1FzpkZgRedT4JQyduPx8tezZsJT0Gag11HxobfTIzFAoUTShBGTsHZQlNEl9fOl46Xe80CkQ6c218AmoBb1vn/preview&quot;,&quot;login-url&quot;:&quot;/oauth2/v2.1/ssoLogin?loginChannelId=2008291855&amp;returnUri=%2Foauth2%2Fv2.1%2Fauthorize%2Fconsent%3Fapp_id%3D2008291855-pKme6OdV%26client_id%3D2008291855%26scope%3Dopenid%2520profile%26state%3DlQLmSIcDXZWb%26response_type%3Dcode%26code_challenge_method%3DS256%26code_challenge%3DesPhKEPSlg1EFKsZpI_sDWE_ODxzaAYDuxHHIkg-KLw%26liff_sdk_version%3D2.27.2%26type%3DL%26redirect_uri%3Dhttps%253A%252F%252Fcourses.zeabur.app%252F%253FLIFFID%253D2008291855-pKme6OdV%26bot_prompt%3Dnormal&quot;,&quot;login-with-another-account-url&quot;:&quot;/oauth2/v2.1/relogin?loginChannelId=2008291855&amp;returnUri=%2Foauth2%2Fv2.1%2Fauthorize%2Fconsent%3Fapp_id%3D2008291855-pKme6OdV%26client_id%3D2008291855%26scope%3Dopenid%2520profile%26state%3DlQLmSIcDXZWb%26response_type%3Dcode%26code_challenge_method%3DS256%26code_challenge%3DesPhKEPSlg1EFKsZpI_sDWE_ODxzaAYDuxHHIkg-KLw%26liff_sdk_version%3D2.27.2%26type%3DL%26redirect_uri%3Dhttps%253A%252F%252Fcourses.zeabur.app%252F%253FLIFFID%253D2008291855-pKme6OdV%26bot_prompt%3Dnormal&quot;},&quot;slots&quot;:{&quot;serverside_field&quot;:[{&quot;type&quot;:&quot;hidden&quot;,&quot;name&quot;:&quot;__csrf&quot;,&quot;value&quot;:&quot;H2nqVQ528g033yGrY1QOZI&quot;,&quot;id&quot;:&quot;__csrf&quot;},{&quot;type&quot;:&quot;hidden&quot;,&quot;name&quot;:&quot;lang&quot;,&quot;value&quot;:&quot;zh_TW&quot;}],&quot;serverside_redirect_query&quot;:[{&quot;type&quot;:&quot;hidden&quot;,&quot;name&quot;:&quot;__csrf&quot;,&quot;value&quot;:&quot;H2nqVQ528g033yGrY1QOZI&quot;,&quot;id&quot;:&quot;__csrf&quot;}]}}" />
-  </div>
-</div>
+    <div class="circuit-overlay"></div>
+    <div class="scan-line"></div>
+    <div class="particle-system" id="particles"></div>
 
-<script>
-  var lap_optout_check_api_url = "https://optout-api.tr.line.me/enabled";
-</script>
+    <div class="image-modal" id="imageModal" onclick="closeImageModal()">
+        <button class="modal-close" onclick="closeImageModal()">×</button>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="放大檢視">
+        </div>
+    </div>
 
-<script src="https://static.line-scdn.net/line_web_login/199e59dd0d9/dist/lap_optout_check.min.js"></script>
+    <div class="floating-cta">
+        <a href="#" class="cta-button" id="ctaButton" target="_blank">
+            馬上填寫諮詢單
+        </a>
+    </div>
 
+    <div class="ai-chatbot" id="aiChatbot">
+        <a href="#" class="chatbot-button" id="chatbotButton" target="_blank">
+            🤖
+        </a>
+    </div>
 
+    <header>
+        <div class="logo-container">
+            <img src="https://i.imgur.com/placeholder.png" alt="衡點健康事業" onerror="this.style.display='none'; this.parentElement.innerHTML='<h1 style=\'color: #93c6c5; font-size: 2.8rem; text-shadow: 0 0 30px rgba(147, 198, 197, 0.6); font-weight: 700; letter-spacing: 2px;\'>衡點健康事業<br><span style=\'font-size: 1.9rem; letter-spacing: 1px;\'>HarmonyZone Wellness</span></h1>'">
+        </div>
+    </header>
 
+    <div class="container">
+        <div class="main-tabs">
+            <button class="main-tab-button active" onclick="switchMainTab('tech')">科技檢測</button>
+            <button class="main-tab-button" onclick="switchMainTab('pilates')">皮拉提斯</button>
+            <button class="main-tab-button" onclick="switchMainTab('weight')">重量訓練</button>
+            <button class="main-tab-button" onclick="switchMainTab('stretch')">肌肉賦能伸展</button>
+        </div>
+
+        <div class="main-tab-content active" id="tech">
+            <section class="course-section">
+                <h2 class="section-title">科技檢測</h2>
+                <div class="section-intro">
+                    運用最先進的 AI 與感測技術，為您提供客觀、科學化的身體評估。從體態分析到步態檢測，全方位了解您的身體狀況，制定最適合的訓練計畫。
+                </div>
+
+                <div class="course-item">
+                    <div class="course-header">
+                        <span class="course-number">1.1</span>
+                        <h3 class="course-name">AI 3D 體態檢測 (Moti Physio)</h3>
+                    </div>
+                    <p class="course-subtitle">提供客觀、科學化且精準的體態、骨骼結構、肌肉張力動作分析</p>
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-wrapper">
+                            <div class="carousel-track" data-carousel="moti">
+                                <div class="carousel-slide">
+                                    <img src="https://ap13.ragic.com/sims/file.jsp?a=oxencust&f=dwpaxNP2bE%40moti2.png" alt="Moti Physio 3D體態檢測">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://ap13.ragic.com/sims/file.jsp?a=oxencust&f=EV1uG9s21O%40MOTI1.jpg" alt="Moti Physio 分析報告">
+                                </div>
+                            </div>
+                            <button class="carousel-nav prev" onclick="moveCarousel('moti', -1, event)">‹</button>
+                            <button class="carousel-nav next" onclick="moveCarousel('moti', 1, event)">›</button>
+                            <div class="carousel-indicators" data-indicators="moti"></div>
+                        </div>
+                    </div>
+
+                    <p class="course-description">
+                        運用先進的 3D 動態捕捉技術，精準分析您的體態、骨骼排列與肌肉張力。系統會生成詳細的視覺化報告，讓您清楚看見身體各部位的狀態，包括骨盆傾斜、脊椎側彎、肩膀不對稱等問題。
+                    </p>
+                    <div class="course-audience">
+                        <div class="course-audience-title">✓ 適合族群</div>
+                        <div class="course-audience-text">不確定自身需要哪些訓練，想更了解自己即刻需要的肌肉平衡訓練</div>
+                    </div>
+                </div>
+
+                <div class="course-item">
+                    <div class="course-header">
+                        <span class="course-number">1.2</span>
+                        <h3 class="course-name">智能體能訓練系統 (RONFIC)</h3>
+                    </div>
+                    <p class="course-subtitle">利用AI與感測技術，分析身體不平衡與潛在弱點，提供科學化的訓練方向</p>
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-wrapper">
+                            <div class="carousel-track" data-carousel="ronfic">
+                                <div class="carousel-slide">
+                                    <img src="https://ap13.ragic.com/sims/file.jsp?a=oxencust&f=ihSgQPxN8G%40ronfic3.png" alt="RONFIC 訓練系統">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://ap13.ragic.com/sims/file.jsp?a=oxencust&f=LPTE2ZvGrX%40ronfit.jpg" alt="RONFIC 訓練中">
+                                </div>
+                            </div>
+                            <button class="carousel-nav prev" onclick="moveCarousel('ronfic', -1, event)">‹</button>
+                            <button class="carousel-nav next" onclick="moveCarousel('ronfic', 1, event)">›</button>
+                            <div class="carousel-indicators" data-indicators="ronfic"></div>
+                        </div>
+                    </div>
+
+                    <p class="course-description">
+                        整合人工智慧與精密感測器，即時監測您的訓練動作與身體數據。系統會自動識別您的弱點區域，並提供個人化的訓練建議，確保每次訓練都能針對性地改善問題。
+                    </p>
+                    <div class="course-audience">
+                        <div class="course-audience-title">✓ 適合族群</div>
+                        <div class="course-audience-text">對於新穎的健身方式更感興趣，對自身要求高</div>
+                    </div>
+                </div>
+
+                <div class="course-item">
+                    <div class="course-header">
+                        <span class="course-number">1.3</span>
+                        <h3 class="course-name">義大利高科技訓練設備 (AKUIS)</h3>
+                    </div>
+                    <p class="course-subtitle">更細節的精準控制訓練強度，幫助強化核心穩定與全身功能性動作</p>
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-wrapper">
+                            <div class="carousel-track" data-carousel="akuis">
+                                <div class="carousel-slide">
+                                    <img src="https://ap13.ragic.com/sims/file.jsp?a=oxencust&f=1obm59hMSd%40akuis5.png" alt="AKUIS 訓練設備">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://ap13.ragic.com/sims/file.jsp?a=oxencust&f=NXEo33DT7r%40akuis4.jpg" alt="AKUIS 訓練中">
+                                </div>
+                            </div>
+                            <button class="carousel-nav prev" onclick="moveCarousel('akuis', -1, event)">‹</button>
+                            <button class="carousel-nav next" onclick="moveCarousel('akuis', 1, event)">›</button>
+                            <div class="carousel-indicators" data-indicators="akuis"></div>
+                        </div>
+                    </div>
+
+                    <p class="course-description">
+                        來自義大利的頂級訓練設備，以精密的力學控制系統著稱。能夠以毫米級的精度調整訓練參數，確保每個動作都在最安全、最有效的範圍內進行，特別適合需要精細控制的核心訓練與功能性訓練。
+                    </p>
+                    <div class="course-audience">
+                        <div class="course-audience-title">✓ 適合族群</div>
+                        <div class="course-audience-text">希望運動時專業教練陪伴，時刻專注課程細節調整</div>
+                    </div>
+                </div>
+
+                <div class="course-item">
+                    <div class="course-header">
+                        <span class="course-number">1.4</span>
+                        <h3 class="course-name">龍骨王 (GaitBEST 步態分析軟體)</h3>
+                    </div>
+                    <p class="course-subtitle">系統檢測取得客觀量化資料，快速獲得跌倒風險評估與預測</p>
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-wrapper">
+                            <div class="carousel-track" data-carousel="gait">
+                                <div class="carousel-slide">
+                                    <img src="https://ap13.ragic.com/sims/file.jsp?a=oxencust&f=q81gQZ1y6J%40%E9%BE%8D%E9%AA%A83.jpg" alt="GaitBEST 步態分析">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://ap13.ragic.com/sims/file.jsp?a=oxencust&f=g438q9ZY9j%40%E9%BE%8D%E9%AA%A82.PNG" alt="龍骨王檢測">
+                                </div>
+                            </div>
+                            <button class="carousel-nav prev" onclick="moveCarousel('gait', -1, event)">‹</button>
+                            <button class="carousel-nav next" onclick="moveCarousel('gait', 1, event)">›</button>
+                            <div class="carousel-indicators" data-indicators="gait"></div>
+                        </div>
+                    </div>
+
+                    <p class="course-description">
+                        透過先進的步態分析技術，精準評估您行走時的動作模式。系統能識別異常的步態特徵，預測潛在的跌倒風險，並提供改善建議，特別適合需要加強行走穩定性的族群。
+                    </p>
+                    <div class="course-audience">
+                        <div class="course-audience-title">✓ 適合族群</div>
+                        <div class="course-audience-text">年長者或欲改善動態走路時可能的風險</div>
+                    </div>
+                </div>
+
+                <div class="course-item">
+                    <div class="course-header">
+                        <span class="course-number">1.5</span>
+                        <h3 class="course-name">人體組成分析 (InBody)</h3>
+                    </div>
+                    <p class="course-subtitle">眾所皆知的人體肌肉、水、脂肪組成測量儀器</p>
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-wrapper">
+                            <div class="carousel-track" data-carousel="inbody">
+                                <div class="carousel-slide">
+                                    <img src="https://ap13.ragic.com/sims/file.jsp?a=oxencust&f=X17P5PE2O5%40Inbody_web-04-1.jpg" alt="InBody 檢測">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://ap13.ragic.com/sims/file.jsp?a=oxencust&f=dH0z9dy5G6%40INbody.jpg" alt="InBody 報告">
+                                </div>
+                            </div>
+                            <button class="carousel-nav prev" onclick="moveCarousel('inbody', -1, event)">‹</button>
+                            <button class="carousel-nav next" onclick="moveCarousel('inbody', 1, event)">›</button>
+                            <div class="carousel-indicators" data-indicators="inbody"></div>
+                        </div>
+                    </div>
+
+                    <p class="course-description">
+                        運用生物電阻分析技術，精準測量您的肌肉量、體脂肪率、水分含量等身體組成。詳細的數據報告能幫助您了解身體狀況，追蹤訓練成效，並調整飲食與運動計畫。
+                    </p>
+                    <div class="course-audience">
+                        <div class="course-audience-title">✓ 適合族群</div>
+                        <div class="course-audience-text">任何想更了解自身即刻狀態的族群</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="main-tab-content" id="pilates">
+            <section class="course-section">
+                <h2 class="section-title">皮拉提斯</h2>
+                <div class="section-intro">
+                    器械皮拉提斯強調從<strong>「呼吸」</strong>開始，誘發深層<strong>「核心」</strong>肌群，達到<strong>「專注控制」</strong>身體的能力，進而完成<strong>「流暢」</strong>的動作。廣泛用於矯正正確排列、提升運動表現及特殊族群訓練復健等，是調整體態、重新找回正確排列的最佳運動選擇！
+                </div>
+                
+                <div class="carousel-container" style="margin-bottom: 2rem;">
+                    <div class="carousel-wrapper" onclick="openImageModal(this)">
+                        <img src="https://ap13.ragic.com/sims/file.jsp?a=oxencust&f=t98eQ6Oqc2%40%E6%9C%AA%E5%91%BD%E5%90%8D%E8%A8%AD%E8%A8%88.png" alt="皮拉提斯課程" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                
+                <p class="course-description" style="margin-bottom: 1.5rem;">
+                    衡點健身具備核心床、凱迪拉克床、穩定椅及梯桶等皮拉提斯器械，專業教練將帶您透過全方位的身體練習，開發全身肌肉與骨骼靈活度。無論是想矯正體態、增強專項運動表現的男女性、待產及產後媽媽，或銀髮族長輩皆非常適合。
+                </p>
+                <div class="course-audience">
+                    <div class="course-audience-title">✓ 適合族群</div>
+                    <div class="course-audience-text">想矯正體態者 ｜ 提升運動表現者 ｜ 待產及產後媽媽 ｜ 銀髮族長輩</div>
+                </div>
+            </section>
+        </div>
+
+        <div class="main-tab-content" id="weight">
+            <section class="course-section">
+                <h2 class="section-title">重量訓練</h2>
+                <div class="section-intro">
+                    衡點健康以功能性訓練為主，為顧客打造能陪伴大家走得長遠的身體。
+                </div>
+                <p class="course-description" style="margin-bottom: 1.2rem;">
+                    什麼是功能性訓練呢？是一種以<strong>「有目的」</strong>為核心的訓練方式，著重於模仿日常生活的動作模式，以提升身體應對日常生活及運動表現的能力。
+                </p>
+                <p class="course-description" style="margin-bottom: 1.5rem;">
+                    與傳統強調單一肌群的訓練不同，功能性訓練強調多肌群同時發力，並著重核心穩定性，藉此增強身體的整體協調性、爆發力與效率。
+                </p>
+            </section>
+        </div>
+
+        <div class="main-tab-content" id="stretch">
+            <section class="course-section">
+                <h2 class="section-title">肌肉賦能伸展</h2>
+                <div class="section-intro">
+                    我們由伸展師為您服務，透過伸展的方式解決平時痠痛緊繃問題。與一般按摩不同，衡點健康的伸展課程，也會配合您的呼吸做伸展，針對較深層的肌肉做到完善的保養。
+                </div>
+                <p class="course-description" style="margin-bottom: 1.5rem;">
+                    您只需要躺著讓伸展師協助您完成伸展。若想詢問如何改善生活上的不適，可於課間發問，伸展師將給予您相關建議。
+                </p>
+                <div class="course-audience">
+                    <div class="course-audience-title">✓ 服務特色</div>
+                    <div class="course-audience-text">專業伸展師 ｜ 配合呼吸節奏 ｜ 深層肌肉保養 ｜ 提供生活改善建議</div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        let lineUserId = '';
+        const baseFormUrl = 'https://liff.line.me/2008291855-rl92dZEP';
+        const aiChatUrl = 'https://oxdify.zeabur.app/chat/1R0SpQ7THsCcRM3W';
+
+        async function initializeLiff() {
+            try {
+                await liff.init({ liffId: '2008291855-pKme6OdV' });
+                
+                if (liff.isLoggedIn()) {
+                    const profile = await liff.getProfile();
+                    lineUserId = profile.userId;
+                    console.log('LINE User ID:', lineUserId);
+                    updateButtons();
+                } else {
+                    liff.login();
+                }
+            } catch (error) {
+                console.error('LIFF initialization failed:', error);
+                updateButtons();
+            }
+        }
+
+        function updateButtons() {
+            const ctaButton = document.getElementById('ctaButton');
+            const chatbotButton = document.getElementById('chatbotButton');
+            
+            if (lineUserId) {
+                ctaButton.href = baseFormUrl + '?userid=' + lineUserId;
+                chatbotButton.href = aiChatUrl + '?userid=' + lineUserId;
+            } else {
+                ctaButton.href = baseFormUrl;
+                chatbotButton.href = aiChatUrl;
+            }
+        }
+
+        function openImageModal(element) {
+            const img = element.querySelector('img');
+            if (img) {
+                const modal = document.getElementById('imageModal');
+                const modalImg = document.getElementById('modalImage');
+                modalImg.src = img.src;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function initImageZoom() {
+            const carouselWrappers = document.querySelectorAll('.carousel-wrapper');
+            carouselWrappers.forEach(wrapper => {
+                if (!wrapper.hasAttribute('onclick')) {
+                    wrapper.style.cursor = 'pointer';
+                    wrapper.addEventListener('click', function(e) {
+                        if (!e.target.classList.contains('carousel-nav') && 
+                            !e.target.closest('.carousel-nav')) {
+                            openImageModal(this);
+                        }
+                    });
+                }
+            });
+        }
+
+        const carousels = {};
+
+        function initCarousel(name) {
+            const track = document.querySelector('[data-carousel="' + name + '"]');
+            if (!track) return;
+            
+            const slides = track.querySelectorAll('.carousel-slide');
+            const indicatorsContainer = document.querySelector('[data-indicators="' + name + '"]');
+            
+            carousels[name] = {
+                track: track,
+                slides: slides,
+                currentIndex: 0,
+                slideCount: slides.length,
+                autoplayInterval: null
+            };
+
+            indicatorsContainer.innerHTML = '';
+            for (let i = 0; i < slides.length; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'carousel-dot';
+                if (i === 0) dot.classList.add('active');
+                dot.onclick = function(e) {
+                    e.stopPropagation();
+                    goToSlide(name, i);
+                };
+                indicatorsContainer.appendChild(dot);
+            }
+
+            startAutoplay(name);
+        }
+
+        function moveCarousel(name, direction, event) {
+            if (event) event.stopPropagation();
+            
+            const carousel = carousels[name];
+            if (!carousel) return;
+            
+            carousel.currentIndex += direction;
+
+            if (carousel.currentIndex < 0) {
+                carousel.currentIndex = carousel.slideCount - 1;
+            } else if (carousel.currentIndex >= carousel.slideCount) {
+                carousel.currentIndex = 0;
+            }
+
+            updateCarousel(name);
+            resetAutoplay(name);
+        }
+
+        function goToSlide(name, index) {
+            if (!carousels[name]) return;
+            carousels[name].currentIndex = index;
+            updateCarousel(name);
+            resetAutoplay(name);
+        }
+
+        function updateCarousel(name) {
+            const carousel = carousels[name];
+            if (!carousel) return;
+            
+            const offset = -carousel.currentIndex * 100;
+            carousel.track.style.transform = 'translateX(' + offset + '%)';
+
+            const indicators = document.querySelectorAll('[data-indicators="' + name + '"] .carousel-dot');
+            indicators.forEach(function(dot, index) {
+                dot.classList.toggle('active', index === carousel.currentIndex);
+            });
+        }
+
+        function startAutoplay(name) {
+            const carousel = carousels[name];
+            if (!carousel) return;
+            
+            carousel.autoplayInterval = setInterval(function() {
+                moveCarousel(name, 1);
+            }, 5000);
+        }
+
+        function resetAutoplay(name) {
+            const carousel = carousels[name];
+            if (!carousel) return;
+            
+            clearInterval(carousel.autoplayInterval);
+            startAutoplay(name);
+        }
+
+        function switchMainTab(tabId) {
+            document.querySelectorAll('.main-tab-button').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            document.querySelectorAll('.main-tab-content').forEach(function(content) {
+                content.classList.remove('active');
+            });
+
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+
+            if (tabId === 'tech') {
+                setTimeout(function() {
+                    initCarousel('moti');
+                    initCarousel('ronfic');
+                    initCarousel('akuis');
+                    initCarousel('gait');
+                    initCarousel('inbody');
+                    initImageZoom();
+                }, 100);
+            } else {
+                setTimeout(function() {
+                    initImageZoom();
+                }, 100);
+            }
+        }
+
+        // Draggable AI Chatbot
+        let isBotDragging = false;
+        let botCurrentX;
+        let botCurrentY;
+        let botInitialX;
+        let botInitialY;
+        let botXOffset = 0;
+        let botYOffset = 0;
+
+        function initBotDraggable() {
+            const dragElement = document.getElementById('aiChatbot');
+            
+            dragElement.addEventListener('mousedown', botDragStart);
+            dragElement.addEventListener('touchstart', botDragStart);
+            
+            document.addEventListener('mousemove', botDrag);
+            document.addEventListener('touchmove', botDrag);
+            
+            document.addEventListener('mouseup', botDragEnd);
+            document.addEventListener('touchend', botDragEnd);
+
+            function botDragStart(e) {
+                if (e.type === 'touchstart') {
+                    botInitialX = e.touches[0].clientX - botXOffset;
+                    botInitialY = e.touches[0].clientY - botYOffset;
+                } else {
+                    botInitialX = e.clientX - botXOffset;
+                    botInitialY = e.clientY - botYOffset;
+                }
+
+                if (e.target === dragElement || dragElement.contains(e.target)) {
+                    isBotDragging = true;
+                    dragElement.classList.add('dragging');
+                }
+            }
+
+            function botDrag(e) {
+                if (isBotDragging) {
+                    e.preventDefault();
+                    
+                    if (e.type === 'touchmove') {
+                        botCurrentX = e.touches[0].clientX - botInitialX;
+                        botCurrentY = e.touches[0].clientY - botInitialY;
+                    } else {
+                        botCurrentX = e.clientX - botInitialX;
+                        botCurrentY = e.clientY - botInitialY;
+                    }
+
+                    botXOffset = botCurrentX;
+                    botYOffset = botCurrentY;
+
+                    setBotTranslate(botCurrentX, botCurrentY, dragElement);
+                }
+            }
+
+            function botDragEnd(e) {
+                botInitialX = botCurrentX;
+                botInitialY = botCurrentY;
+                isBotDragging = false;
+                dragElement.classList.remove('dragging');
+            }
+
+            function setBotTranslate(xPos, yPos, el) {
+                el.style.transform = 'translate3d(' + xPos + 'px, ' + yPos + 'px, 0)';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeLiff();
+
+            initCarousel('moti');
+            initCarousel('ronfic');
+            initCarousel('akuis');
+            initCarousel('gait');
+            initCarousel('inbody');
+
+            initImageZoom();
+            initBotDraggable();
+
+            const particleSystem = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'glow-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particleSystem.appendChild(particle);
+            }
+        });
+    </script>
 </body>
 </html>
